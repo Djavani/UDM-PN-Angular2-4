@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12.col-sm-12.col-md-12.col-lg-12.col-xl-12">
+            <h2>Meus Contatos</h2>
+
+            <table class="table-striped table-over">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Deletar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let contato of contatos" >
+                        <td>{{ contato.nome }}</td>
+                        <td>{{ contato.email}}</td>
+                        <td>{{ contato.telefone }}</td>
+                        <td><button class="btn btn-danger">deletar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
