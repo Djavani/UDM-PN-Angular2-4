@@ -12,6 +12,7 @@ const core_1 = require("@angular/core");
 const router_1 = require("@angular/router");
 const common_1 = require("@angular/common");
 const contato_service_1 = require("./contato.service");
+const contato_model_1 = require("./contato.model");
 let ContatoDetalheComponent = class ContatoDetalheComponent {
     constructor(contatoService, route, location) {
         this.contatoService = contatoService;
@@ -20,14 +21,19 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
     }
     ngOnInit() {
         console.log('On init');
+        this.contato = new contato_model_1.Contato(0, '', '', '');
         this.route.params.forEach((params) => {
             let id = +params['id']; // id é o nome do parametro que defini na rota ( path: 'contato/save/:id', )
             console.log(id);
             this.contatoService.getContato(id)
                 .then((contato) => {
-                console.log(contato);
+                //console.log(contato);
+                this.contato = contato;
             });
         });
+    }
+    teste() {
+        console.log(this.contato);
     }
 };
 ContatoDetalheComponent = __decorate([

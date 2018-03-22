@@ -12,6 +12,8 @@ import { Contato } from './contato.model';
 })
 export class ContatoDetalheComponent implements OnInit {
 
+    contato: Contato;
+    
     constructor(
         private contatoService: ContatoService,
         private route: ActivatedRoute,
@@ -20,14 +22,22 @@ export class ContatoDetalheComponent implements OnInit {
     
     ngOnInit(): void {
         console.log('On init');
+        this.contato = new Contato(0, '', '', '');
+
         this.route.params.forEach((params: Params) =>{
             let id: number = +params['id']; // id é o nome do parametro que defini na rota ( path: 'contato/save/:id', )
             console.log(id);
             
             this.contatoService.getContato(id)
             .then((contato: Contato) => {
-                console.log(contato);                
+                //console.log(contato);
+                this.contato = contato;
             });
         })     
+    }
+
+    teste(): void {
+        console.log(this.contato);
+        
     }
 }
