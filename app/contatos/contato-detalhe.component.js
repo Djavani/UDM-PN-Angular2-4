@@ -23,6 +23,10 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         this.route.params.forEach((params) => {
             let id = +params['id']; // id é o nome do parametro que defini na rota ( path: 'contato/save/:id', )
             console.log(id);
+            this.contatoService.getContato(id)
+                .then((contato) => {
+                console.log(contato);
+            });
         });
     }
 };
