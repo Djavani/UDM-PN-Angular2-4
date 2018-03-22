@@ -9,7 +9,7 @@ const core_1 = require("@angular/core");
 const contatos_mock_1 = require("./contatos-mock");
 let ContatoService = class ContatoService {
     getContatos() {
-        return contatos_mock_1.CONTATOS;
+        return Promise.resolve(contatos_mock_1.CONTATOS);
     }
 };
 ContatoService = __decorate([
