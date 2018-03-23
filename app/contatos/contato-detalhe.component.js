@@ -32,23 +32,26 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             }
         });
     }
-    teste() {
-        console.log();
+    getFormGroupClass(isValid, isPristine) {
+        return {
+            'form-group': true,
+            'has-danger': !isValid && !isPristine,
+            'has-success': isValid && !isPristine
+        };
+    }
+    getFormControlClass(isValid, isPristine) {
+        return {
+            'form-control': true,
+            'form-control-danger': !isValid && !isPristine,
+            'form-control-success': isValid && !isPristine
+        };
     }
 };
 ContatoDetalheComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'contato-detalhe',
-        templateUrl: 'contato-detalhe.component.html',
-        styles: [`
-        .ng-valid[required] {
-            border: 3px solid green;
-        }
-        .ng-invalid:not(form) {
-            border: 3px solid red;
-        }
-    `]
+        templateUrl: 'contato-detalhe.component.html'
     }),
     __metadata("design:paramtypes", [contato_service_1.ContatoService,
         router_1.ActivatedRoute,

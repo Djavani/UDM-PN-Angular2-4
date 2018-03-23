@@ -8,15 +8,7 @@ import { Contato } from './contato.model';
 @Component({
     moduleId: module.id,
     selector: 'contato-detalhe',
-    templateUrl: 'contato-detalhe.component.html',
-    styles: [`
-        .ng-valid[required] {
-            border: 3px solid green;
-        }
-        .ng-invalid:not(form) {
-            border: 3px solid red;
-        }
-    `]
+    templateUrl: 'contato-detalhe.component.html'
 })
 export class ContatoDetalheComponent implements OnInit {
 
@@ -44,8 +36,24 @@ export class ContatoDetalheComponent implements OnInit {
         })
     }
 
-    teste(): void {
-        console.log();
+    getFormGroupClass(isValid: boolean, isPristine: boolean)  {
+        return {
+            'form-group': true,
+            'has-danger': !isValid && !isPristine,
+            'has-success': isValid && !isPristine
 
+        };
     }
+    
+    getFormControlClass(isValid: boolean, isPristine: boolean)  {
+        return {
+            'form-control': true,
+            'form-control-danger': !isValid && !isPristine,
+            'form-control-success': isValid && !isPristine
+
+        };
+    }
+
+
+    
 }
