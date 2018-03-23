@@ -8,7 +8,15 @@ import { Contato } from './contato.model';
 @Component({
     moduleId: module.id,
     selector: 'contato-detalhe',
-    templateUrl: 'contato-detalhe.component.html'
+    templateUrl: 'contato-detalhe.component.html',
+    styles: [`
+        .ng-valid[required] {
+            border: 3px solid green;
+        }
+        .ng-invalid:not(form) {
+            border: 3px solid red;
+        }
+    `]
 })
 export class ContatoDetalheComponent implements OnInit {
 
