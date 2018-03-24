@@ -19,8 +19,13 @@ let ContatoService = class ContatoService {
     getContatos() {
         return this.http.get(this.contatosUrl)
             .toPromise()
-            .then(response => response.json().data);
+            .then(response => response.json().data)
+            .catch(this.handleError);
         //return Promise.resolve(CONTATOS);
+    }
+    handleError(err) {
+        console.log('Error: ', err);
+        return Promise.reject(err.message || err);
     }
     getContato(id) {
         return this.getContatos()
