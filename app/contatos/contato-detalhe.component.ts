@@ -13,6 +13,7 @@ import { Contato } from './contato.model';
 export class ContatoDetalheComponent implements OnInit {
 
     contato: Contato;
+    private isNew: boolean = true;
 
     constructor(
         private contatoService: ContatoService,
@@ -28,6 +29,7 @@ export class ContatoDetalheComponent implements OnInit {
             let id: number = +params['id']; // id é o nome do parametro que defini na rota ( path: 'contato/save/:id', )
 
             if (id) {
+                this.isNew = false;
                 this.contatoService.getContato(id)
                     .then((contato: Contato) => {                    
                         this.contato = contato;
@@ -54,6 +56,15 @@ export class ContatoDetalheComponent implements OnInit {
         };
     }
 
-
+    onSubmit(): void {
+        if(this.isNew) {
+            console.log('cadastrar contato');
+            
+        }else {
+            console.log('alterar contato');
+            
+        }
+        
+    }
     
 }

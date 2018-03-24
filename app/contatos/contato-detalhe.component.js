@@ -18,6 +18,7 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         this.contatoService = contatoService;
         this.route = route;
         this.location = location;
+        this.isNew = true;
     }
     ngOnInit() {
         console.log('On init');
@@ -25,6 +26,7 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         this.route.params.forEach((params) => {
             let id = +params['id']; // id é o nome do parametro que defini na rota ( path: 'contato/save/:id', )
             if (id) {
+                this.isNew = false;
                 this.contatoService.getContato(id)
                     .then((contato) => {
                     this.contato = contato;
@@ -45,6 +47,14 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             'form-control-danger': !isValid && !isPristine,
             'form-control-success': isValid && !isPristine
         };
+    }
+    onSubmit() {
+        if (this.isNew) {
+            console.log('cadastrar contato');
+        }
+        else {
+            console.log('alterar contato');
+        }
     }
 };
 ContatoDetalheComponent = __decorate([
