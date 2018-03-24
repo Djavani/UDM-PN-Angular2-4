@@ -35,11 +35,21 @@ let ContatoService = class ContatoService {
         });
     }
     create(contato) {
-        return this.http.post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
+        return this.http
+            .post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
             .toPromise()
             .then((response) => {
-            console.log(response.json().data);
             return response.json().data;
+        })
+            .catch(this.handleError);
+    }
+    update(contato) {
+        const URL = `${this.contatosUrl}/${contato.id}`; // app/contatos/:id
+        return this.http
+            .put(URL, JSON.stringify(contato), { headers: this.headers })
+            .toPromise()
+            .then(() => {
+            return contato;
         })
             .catch(this.handleError);
     }
