@@ -53,6 +53,16 @@ let ContatoService = class ContatoService {
         })
             .catch(this.handleError);
     }
+    delete(contato) {
+        const URL = `${this.contatosUrl}/${contato.id}`; // app/contatos/:id
+        return this.http
+            .delete(URL, { headers: this.headers })
+            .toPromise()
+            .then(() => {
+            return contato;
+        })
+            .catch(this.handleError);
+    }
     getContatosSlowly() {
         return new Promise((resolve, reject) => {
             setTimeout(resolve, 3000);

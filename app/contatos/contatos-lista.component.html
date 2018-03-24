@@ -17,7 +17,7 @@
                         <td>{{ contato.nome }}</td>
                         <td>{{ contato.email}}</td>
                         <td>{{ contato.telefone }}</td>
-                        <td><button class="btn btn-danger">deletar</button></td>
+                        <td><button class="btn btn-danger"(click)="onDelete(contato); $event.stopPropagation()">deletar</button></td>
                     </tr>
                 </tbody>
             </table>

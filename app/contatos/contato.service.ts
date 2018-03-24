@@ -57,6 +57,17 @@ export class ContatoService {
         .catch(this.handleError);
     }
 
+    delete(contato: Contato): Promise<Contato> {
+        const URL = `${this.contatosUrl}/${contato.id}`; // app/contatos/:id
+        return this.http
+        .delete(URL, {headers: this.headers})
+        .toPromise()
+        .then(() => {                  
+            return contato as Contato;
+        })
+        .catch(this.handleError);
+    }
+
     getContatosSlowly(): Promise<Contato[]> {
         return new Promise((resolve, reject) => {
             setTimeout(resolve, 3000);
