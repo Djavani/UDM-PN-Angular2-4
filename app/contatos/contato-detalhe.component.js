@@ -49,12 +49,15 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         };
     }
     onSubmit() {
+        let promise;
         if (this.isNew) {
             console.log('cadastrar contato');
+            promise = this.contatoService.create(this.contato);
         }
         else {
-            console.log('alterar contato');
+            console.log('Alterar contato');
         }
+        promise.then(contato => this.location.back());
     }
 };
 ContatoDetalheComponent = __decorate([

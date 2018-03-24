@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core"
-import { Http } from '@angular/http'
+import { Http, Headers, Response } from '@angular/http'
 
 import 'rxjs/add/operator/toPromise';
 
@@ -9,6 +9,7 @@ import { Contato } from './contato.model';
 export class ContatoService {
 
     private contatosUrl: string = 'app/contatos'
+    private headers: Headers = new Headers({'Content-Type': 'applicatoin/json'})
 
     constructor(
         private http: Http
@@ -33,6 +34,16 @@ export class ContatoService {
         .then((contatos: Contato[]) => {
             return contatos.find(contato => contato.id === id);
         });
+    }
+
+    create(contato: Contato): Promise<Contato> {
+        return this.http.post(this.contatosUrl, JSON.stringify(contato), {headers: this.headers})
+        .toPromise()
+        .then((response: Response) => {
+            console.log(response.json().data);            
+            return response.json().data as Contato;
+        })
+        .catch(this.handleError);
     }
 
     getContatosSlowly(): Promise<Contato[]> {
