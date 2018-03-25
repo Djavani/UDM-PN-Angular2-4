@@ -14,6 +14,7 @@ export class ContatosListaComponent implements OnInit{
     contatos: Contato[];
     mensagem: {};
     classesCss: {};
+    private currentTimeout: any;
     
     constructor(
         private contatoService: ContatoService,
@@ -62,7 +63,12 @@ export class ContatosListaComponent implements OnInit{
         this.mensagem = mensagem;
         this.montarClasses(mensagem.tipo);
         if(mensagem.tipo != 'danger') {
-            setTimeout(() => {
+            
+            if(this.currentTimeout) {
+                clearTimeout(this.currentTimeout);
+            }
+            
+            this.currentTimeout = setTimeout(() => {
                 this.mensagem = undefined;    
             }, 3000);
         }        
