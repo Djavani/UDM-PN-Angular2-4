@@ -27,6 +27,9 @@ export class ContatoBuscaComponent implements OnInit {
                 console.log('fez a busca', term);
                 
                 return term ? this.contatoService.search(term) : Observable.of<Contato[]>([])
+            }).catch(err => {
+                console.log(err);
+                return Observable.of<Contato[]>([]);                
             });
         
         this.contatos.subscribe((contatos: Contato[]) => {

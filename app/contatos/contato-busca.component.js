@@ -24,6 +24,9 @@ let ContatoBuscaComponent = class ContatoBuscaComponent {
             .switchMap(term => {
             console.log('fez a busca', term);
             return term ? this.contatoService.search(term) : Observable_1.Observable.of([]);
+        }).catch(err => {
+            console.log(err);
+            return Observable_1.Observable.of([]);
         });
         this.contatos.subscribe((contatos) => {
             console.log('retornou do servidor: ', contatos);
