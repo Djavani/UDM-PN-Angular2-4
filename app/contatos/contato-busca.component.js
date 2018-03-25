@@ -18,8 +18,9 @@ let ContatoBuscaComponent = class ContatoBuscaComponent {
         this.termosDaBusca = new Subject_1.Subject();
     }
     ngOnInit() {
-        this.contatos = this.termosDaBusca
-            .debounceTime(500)
+        this.contatos = this.termosDaBusca.asObservable()
+            .debounceTime(500) // aguarde por meio segundos para emitir novos eventos
+            .distinctUntilChanged() //ignore se o proximo parametros de busca for igual ao anterior
             .switchMap(term => {
             console.log('fez a busca', term);
             return term ? this.contatoService.search(term) : Observable_1.Observable.of([]);

@@ -20,8 +20,9 @@ export class ContatoBuscaComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.contatos = this.termosDaBusca
-            .debounceTime(500)
+        this.contatos = this.termosDaBusca.asObservable()            
+            .debounceTime(500) // aguarde por meio segundos para emitir novos eventos
+            .distinctUntilChanged() //ignore se o proximo parametros de busca for igual ao anterior
             .switchMap(term => {
                 console.log('fez a busca', term);
                 
