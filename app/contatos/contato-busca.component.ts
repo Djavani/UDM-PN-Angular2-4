@@ -1,4 +1,5 @@
 import { ContatoService } from './contato.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
@@ -8,7 +9,12 @@ import { Contato } from './contato.model';
 @Component({
     moduleId: module.id,
     selector: 'contato-busca',
-    templateUrl: 'contato-busca.component.html' 
+    templateUrl: 'contato-busca.component.html',
+    styles: [ `
+        .cursor-pointer:hover {
+            cursor: pointer;
+        }
+    `]
 })
 export class ContatoBuscaComponent implements OnInit {
     
@@ -16,7 +22,8 @@ export class ContatoBuscaComponent implements OnInit {
     private termosDaBusca: Subject<string> = new Subject<string>();
     
     constructor(
-        private contatoService: ContatoService
+        private contatoService: ContatoService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -34,5 +41,10 @@ export class ContatoBuscaComponent implements OnInit {
     search(termo: string): void {        
         this.termosDaBusca.next(termo);
         
+    }
+
+    verDetalhe(contato: Contato): void {
+        let link = ['contato/save', contato.id];
+        this.router.navigate(link);
     }
 }

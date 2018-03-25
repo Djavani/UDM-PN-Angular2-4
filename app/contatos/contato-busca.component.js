@@ -9,12 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const contato_service_1 = require("./contato.service");
+const router_1 = require("@angular/router");
 const core_1 = require("@angular/core");
 const Observable_1 = require("rxjs/Observable");
 const Subject_1 = require("rxjs/Subject");
 let ContatoBuscaComponent = class ContatoBuscaComponent {
-    constructor(contatoService) {
+    constructor(contatoService, router) {
         this.contatoService = contatoService;
+        this.router = router;
         this.termosDaBusca = new Subject_1.Subject();
     }
     ngOnInit() {
@@ -31,14 +33,24 @@ let ContatoBuscaComponent = class ContatoBuscaComponent {
     search(termo) {
         this.termosDaBusca.next(termo);
     }
+    verDetalhe(contato) {
+        let link = ['contato/save', contato.id];
+        this.router.navigate(link);
+    }
 };
 ContatoBuscaComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'contato-busca',
-        templateUrl: 'contato-busca.component.html'
+        templateUrl: 'contato-busca.component.html',
+        styles: [`
+        .cursor-pointer:hover {
+            cursor: pointer;
+        }
+    `]
     }),
-    __metadata("design:paramtypes", [contato_service_1.ContatoService])
+    __metadata("design:paramtypes", [contato_service_1.ContatoService,
+        router_1.Router])
 ], ContatoBuscaComponent);
 exports.ContatoBuscaComponent = ContatoBuscaComponent;
 //# sourceMappingURL=contato-busca.component.js.map

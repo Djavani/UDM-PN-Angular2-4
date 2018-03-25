@@ -9,7 +9,9 @@
                 (keyup)="search(searchBox.value)">
             </div>
             <ul class="list-group">
-                <li class="list-group-item" *ngFor="let contato of contatos | async">{{ contato.nome }}</li>                
+                <li class="list-group-item cursor-pointer"
+                *ngFor="let contato of contatos | async"
+                (click)="verDetalhe(contato)" >{{ contato.nome }}</li>                
             </ul>
         </div>
     </div>
