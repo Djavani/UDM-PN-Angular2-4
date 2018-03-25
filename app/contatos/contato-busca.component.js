@@ -12,6 +12,9 @@ const core_1 = require("@angular/core");
 let ContatoBuscaComponent = class ContatoBuscaComponent {
     constructor() { }
     ngOnInit() { }
+    search(termo) {
+        console.log(termo);
+    }
 };
 ContatoBuscaComponent = __decorate([
     core_1.Component({
