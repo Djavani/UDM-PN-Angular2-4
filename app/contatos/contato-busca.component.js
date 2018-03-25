@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const contato_service_1 = require("./contato.service");
-const router_1 = require("@angular/router");
 const core_1 = require("@angular/core");
+const router_1 = require("@angular/router");
 const Observable_1 = require("rxjs/Observable");
 const Subject_1 = require("rxjs/Subject");
+const contato_service_1 = require("./contato.service");
 let ContatoBuscaComponent = class ContatoBuscaComponent {
     constructor(contatoService, router) {
         this.contatoService = contatoService;
@@ -30,6 +30,10 @@ let ContatoBuscaComponent = class ContatoBuscaComponent {
             return Observable_1.Observable.of([]);
         });
     }
+    ngOnChanges(changes) {
+        let busca = changes['busca'];
+        this.search(busca.currentValue);
+    }
     search(termo) {
         this.termosDaBusca.next(termo);
     }
@@ -38,6 +42,10 @@ let ContatoBuscaComponent = class ContatoBuscaComponent {
         this.router.navigate(link);
     }
 };
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], ContatoBuscaComponent.prototype, "busca", void 0);
 ContatoBuscaComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
