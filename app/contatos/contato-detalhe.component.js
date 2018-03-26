@@ -27,7 +27,7 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             let id = +params['id']; // id é o nome do parametro que defini na rota ( path: 'contato/save/:id', )
             if (id) {
                 this.isNew = false;
-                this.contatoService.getContato(id)
+                this.contatoService.find(id)
                     .then((contato) => {
                     this.contato = contato;
                 });
